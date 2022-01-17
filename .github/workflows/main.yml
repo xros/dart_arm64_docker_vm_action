@@ -1,4 +1,17 @@
-on: [push]
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'bin/**'
+      - 'test/**'
+      - 'lib/**'
+      - 'pubspec.yaml'
+      - 'pubspec.lock'
+      - 'action.yml'
+      - 'Dockerfile'
+      - '.github/workflows/main.yml'
+  pull_request:
+    branches: [ main ]
 
 jobs:
   hello_world_job:
