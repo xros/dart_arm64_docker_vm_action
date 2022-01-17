@@ -1,0 +1,29 @@
+on: [push]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job to compile linux/arm64 dart executable
+    steps:
+      # To use this repository's private action,
+      # you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      # compile dart
+      - name: Compile dart linux/arm64 action step
+        uses: ./ # Uses an action in the root directory
+        id: compile
+        with:
+          dart_main_file: 'bin/main.dart'
+          dart_compiled_file: 'linux-arm64.exe'
+
+      # Use the output from the `hello` step
+      - name: Get the output time
+        run: echo "Compile result is ${{ steps.compile.outputs.my_console_output }}"
+
+      # Upload artifact
+      - uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: /var/lib/docker/volumes/sfsd/_data

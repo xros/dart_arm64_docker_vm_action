@@ -1,0 +1,20 @@
+name: 'Compile Dart linux/arm64 binary'
+description: 'Runs in Dart linux/arm64 Docker VM, pushed to GitHub'
+inputs:
+  dart_main_file:
+    description: 'The dart main file to be compiled'
+    required: true
+    default: 'bin/main.dart'
+  dart_compiled_file:
+    description: 'The compiled file'
+    required: true
+    default: 'linux-arm64.exe'
+outputs:
+  time:
+    description: 'The time we greeted you'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.dart_main_file }}
+    - ${{ inputs.dart_compiled_file }}
