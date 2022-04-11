@@ -36,7 +36,7 @@ jobs:
         run: echo "Compile result is ${{ steps.compile.outputs.my_console_output }}"
 
       # Upload artifact
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
           path: /var/lib/docker/volumes/sfsd/_data
